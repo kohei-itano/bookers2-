@@ -1,0 +1,63 @@
+<%= notice %>
+
+<div class="container">
+        <!-- <p id="notice"></p> -->
+  <div class="row">
+  	<div class="col-xs-3">
+    	<h2>User info</h2>
+    		<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %>
+    		<table class="table">
+	      	<tbody>
+		      	<tr>
+		    	  	<th>name</th>
+		    	  	<th><%= @user.name %></th>
+		      	</tr>
+		      	<tr>
+		    	  	<th>introduction</th>
+		    	  	<th><%= @user.introduction %></th>
+		      	</tr>
+					</tbody>
+				</table>
+					<%= link_to "", edit_user_path(@user), class: 'col-xs-12 btn btn-default glyphicon glyphicon-wrench edit' %>
+
+			    <h2>New book</h2>
+			  	<%= form_for(@book) do |f| %>
+
+    				<h4>Title</h4>
+    				<%= f.text_field :title %>
+
+    				<h4>Opinion</h4>
+    				<%= f.text_area :body %>
+						<%= f.submit "Create book", class: 'btn btn-primary col-xs-12' %>
+    			<% end %>
+			</div>
+			<div class="col-xs-9">
+    		<h2>Books</h2>
+    			<table class="table table-hover table-inverse">
+  					<thead>
+    					<tr> 
+      					<th></th>
+      					<th>Title</th>
+      					<th>Opinion</th>
+      					<th colspan="3"></th>
+    					</tr>
+  					</thead>
+  					<% @user.books.each do |book| %>
+  					<tbody>
+  						<tr>
+  							<td>
+  								<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg" %>
+  							</td>
+  							<td>
+  								<%= link_to book_path(book.id) do %>
+  								<%= book.title %>
+  								<% end %>
+  							</td>
+  							<td><%= book.body %></td>
+  						</tr>
+  					</tbody>
+  					<% end %>
+					</table>
+  		</div>
+	</div>
+</div>
