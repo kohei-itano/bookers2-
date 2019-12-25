@@ -53,7 +53,12 @@
   								<%= book.title %>
   								<% end %>
   							</td>
-  							<td><%= book.body %></td>
+  							<td>
+                  <%= book.body %>
+                </td>
+                <td>
+                  <%= book.book_comments.count %>件コメント
+                </td>
   						</tr>
   					</tbody>
   					<% end %>
