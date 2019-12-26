@@ -13,7 +13,7 @@ def destroy
 	@book = Book.find(params[:book_id])
 	comment = current_user.book_comments.find(params[:id])
 	comment.destroy
-	redirect_to request.referrer
+	redirect_to books_path
 end
 
 	private

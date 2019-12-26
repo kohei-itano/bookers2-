@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destroy'
   root 'homes#index'
   get "home/about" => "homes#about"
   devise_for :users
-	resources :users
+
+# フォロー機能
+	resources :users do
+		resource :relationships, only: [:create, :destroy]
+		get :follows, on: :member
+		get :followers, on: :member
+	end
 
 	resources :books do
 		# いいね機能
